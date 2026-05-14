@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách bài tập - Nguyễn Minh Luân</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: radial-gradient(circle at top left, #0f172a, #1e293b);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .exercise-item {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .exercise-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(34, 211, 238, 0.1);
+            border-color: #22d3ee;
+            box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.2);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div class="glass-card p-10 rounded-[2.5rem] w-full max-w-lg transition-all duration-500">
+        <div class="mb-10 text-center">
+            <h1 class="text-4xl font-extrabold text-white mb-3 tracking-tight">
+                Danh Sách <span class="text-cyan-400">Bài Tập</span>
+            </h1>
+            <div class="h-1 w-20 bg-cyan-500 mx-auto rounded-full mb-4"></div>
+        </div>
+
+        <div class="space-y-5">
+            <a href="baitap1.html" class="exercise-item block p-5 rounded-2xl border border-slate-700 group">
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-300 group-hover:text-cyan-400 font-semibold text-lg">Bài tập 1: Bài thơ</span>
+                    <i class="fa fa-book text-slate-500 group-hover:text-cyan-400"></i>
+                </div>
+            </a>
+
+            <a href="https://nguyenminhluan2007.github.io/Nh-c-c-a-t-i/" target="_blank" class="exercise-item block p-5 rounded-2xl border border-slate-700 group">
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-300 group-hover:text-cyan-400 font-semibold text-lg">Bài tập 2: Web âm nhạc</span>
+                    <div class="flex items-center">
+                        <span class="text-[10px] bg-cyan-500 text-black px-2 py-1 rounded mr-3 font-bold">LIVE</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="banthan.html" class="exercise-item block p-5 rounded-2xl border border-slate-700 group bg-cyan-500/5">
+                <span class="text-white group-hover:text-cyan-300 font-bold text-lg flex items-center justify-between">
+                    Bài tập 3: Website giới thiệu
+                </span>
+            </a>
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-slate-800 flex flex-col items-center">
+            <p class="text-cyan-400 font-extrabold text-sm tracking-wide">
+                NGUYỄN MINH LUÂN - DA25TTC
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

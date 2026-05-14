@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    /* --- 1. BIẾN MÀU SẮC ĐỒNG NHẤT (Cấu hình tông Neon Cyan chủ đạo) --- */
+    :root {
+      --neon-cyan: #22d3ee;
+      --bg-dark: #020617;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --text-main: #f8fafc;
+      --text-dim: #94a3b8;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin: 0;
+      padding: 30px;
+      /* Nền tối Gradient tạo chiều sâu không gian */
+      background: radial-gradient(circle at top, #0f172a 0%, #020617 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    /* --- 2. TIÊU ĐỀ SECTION --- */
+    .header-section {
+      border-bottom: 4px solid var(--neon-cyan);
+      display: inline-block;
+      margin-bottom: 40px;
+    }
+
+    .header-section h2 {
+      margin: 0;
+      color: var(--neon-cyan);
+      font-size: 28px;
+      text-transform: uppercase;
+      padding-bottom: 5px;
+      text-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+    }
+
+    /* --- 3. CẤU TRÚC TIMELINE --- */
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Đường kẻ dọc chạy giữa trang */
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: var(--neon-cyan);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+      box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+    }
+
+    /* Khung chứa từng mốc thời gian */
+    .container {
+      padding: 10px 40px;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+      box-sizing: border-box;
+      z-index: 2;
+    }
+
+    /* Nút tròn nằm trên đường kẻ dọc */
+    .container::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: -10px;
+      background-color: var(--bg-dark);
+      border: 3px solid var(--neon-cyan);
+      top: 20px;
+      border-radius: 50%;
+      z-index: 3;
+      box-shadow: 0 0 10px var(--neon-cyan);
+    }
+
+    .left { left: 0; }
+    .right { left: 50%; }
+    .right::after { left: -10px; }
+
+    /* --- 4. HỘP NỘI DUNG (Content Box) --- */
+    .content {
+      padding: 20px 30px;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px); /* Hiệu ứng kính mờ (Glassmorphism) */
+      position: relative;
+      border-radius: 15px;
+      border: 1px solid rgba(34, 211, 238, 0.1);
+      transition: 0.4s;
+    }
+
+    /* Hiệu ứng khi di chuột vào thẻ */
+    .content:hover {
+      transform: scale(1.03);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 10px 30px rgba(34, 211, 238, 0.2);
+    }
+
+    /* Nhãn thời gian/loại hình */
+    .time-tag {
+      display: inline-block;
+      background: var(--neon-cyan);
+      color: #020617;
+      padding: 3px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-bottom: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+    }
+
+    .content h3 {
+      margin-top: 0;
+      color: var(--neon-cyan);
+      font-size: 19px;
+    }
+
+    .content p { color: var(--text-dim); font-size: 14px; }
+
+    /* Khung chứa ảnh trong thẻ */
+    .image-placeholder {
+      width: 100%;
+      height: 180px;
+      background-color: #1e293b;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid rgba(34, 211, 238, 0.1);
+    }
+
+    .image-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Giữ tỉ lệ ảnh không bị móp */
+      opacity: 0.7;      /* Làm mờ nhẹ ảnh gốc */
+      transition: 0.5s;
+    }
+
+    /* Khi hover vào thẻ, ảnh sẽ sáng rõ và phóng to nhẹ */
+    .content:hover .image-placeholder img { 
+      opacity: 1; 
+      transform: scale(1.05); 
+    }
+
+    /* --- 5. ĐÁP ỨNG DI ĐỘNG (Responsive) --- */
+    @media screen and (max-width: 767px) {
+      .timeline::after { left: 31px; }
+      .container { width: 100%; padding-left: 70px; padding-right: 25px; }
+      .container::after { left: 21px; }
+      .right { left: 0%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-section">
+    <h2>Trải Nghiệm Học Tập & Văn Hóa</h2>
+  </div>
+
+  <div class="timeline">
+    
+    <div class="container left">
+      <div class="content">
+        <div class="time-tag">2025 - Nay</div>
+        <h3>Học tập tại ĐH Trà Vinh</h3>
+        <div class="image-placeholder">
+            <img src="anh/nganhcntt.png" alt="Ngành CNTT tại TVU">
+        </div>
+        <p>Bắt đầu hành trình sinh viên ngành <b>Công nghệ thông tin</b> tại TVU. Môi trường năng động giúp phát triển kỹ năng chuyên môn.</p>
+      </div>
+    </div>
+
+    <div class="container right">
+      <div class="content">
+        <div class="time-tag">Kỹ năng IT</div>
+        <h3>Lập trình & Máy tính</h3>
+        <div class="image-placeholder">
+            <img src="anh/laptrinh.png" alt="Học lập trình">
+        </div>
+        <p>Làm chủ các ngôn ngữ lập trình cơ bản và tư duy thuật toán để xây dựng nền tảng vững chắc cho tương lai.</p>
+      </div>
+    </div>
+
+    <div class="container left">
+      <div class="content">
+        <div class="time-tag">Ngoại khóa</div>
+        <h3>Hoạt động Thể thao</h3>
+        <div class="image-placeholder">
+            <img src="anh/thethao.jpg" alt="Hoạt động thể thao">
+        </div>
+        <p>Rèn luyện sức khỏe qua các giải đấu bóng đá và bóng chuyền, kết nối tinh thần đồng đội với bạn bè cùng khóa.</p>
+      </div>
+    </div>
+
+    <div class="container right">
+      <div class="content">
+        <div class="time-tag">Văn hóa & Lễ hội</div>
+        <h3>Văn hóa Khmer</h3>
+        <div class="image-placeholder">
+            <img src="anh/vanhoa.jpg" alt="Văn hóa Khmer">
+        </div>
+        <p>Trải nghiệm và tìm hiểu nét đẹp kiến trúc chùa chiền cùng các lễ hội truyền thống đặc sắc tại vùng đất Trà Vinh.</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

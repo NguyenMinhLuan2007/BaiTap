@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    /* --- 1. BIẾN MÀU SẮC --- */
+    :root {
+      --neon-cyan: #22d3ee;
+      --accent-blue: #3b82f6;
+      --bg-dark: #020617;
+      --card-bg: rgba(15, 23, 42, 0.8);
+      --text-main: #f8fafc;
+      --text-dim: #94a3b8;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin: 0;
+      padding: 30px;
+      background: radial-gradient(circle at top, #0f172a 0%, #020617 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    /* --- 2. TIÊU ĐỀ TRANG --- */
+    .header-title {
+      border-bottom: 4px solid var(--neon-cyan);
+      display: inline-block;
+      margin-bottom: 35px;
+      padding-bottom: 5px;
+    }
+
+    .header-title h2 {
+      margin: 0;
+      color: var(--neon-cyan);
+      font-size: 28px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+    }
+
+    /* --- 3. BỐ CỤC LƯỚI --- */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    /* --- 4. THIẾT KẾ THẺ HOẠT ĐỘNG --- */
+    .activity-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 10px 30px rgba(34, 211, 238, 0.15);
+    }
+
+    .img-box {
+      width: 100%;
+      height: 180px;
+      background-color: #1e293b;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .activity-card:hover .img-box img {
+      transform: scale(1.1);
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--accent-blue);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .card-body {
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .card-body h3 {
+      margin: 0 0 10px 0;
+      color: var(--neon-cyan);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-body h3 i {
+      margin-right: 10px;
+      color: var(--accent-blue);
+    }
+
+    .card-body p {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 15px;
+    }
+
+    .icon-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .icon-list li {
+      margin-bottom: 8px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      color: #cbd5e1;
+    }
+
+    .icon-list i {
+      color: var(--neon-cyan);
+      margin-right: 10px;
+      width: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-title">
+    <h2>Các Hoạt Động Tiêu Biểu</h2>
+  </div>
+
+  <div class="activity-grid">
+    
+    <div class="activity-card">
+      <div class="img-box">
+        <span class="badge">Tình nguyện</span>
+        <img src="anh/muahexanh.png" alt="Mùa hè xanh">
+      </div>
+      <div class="card-body">
+        <h3><i class="fa fa-flag"></i> Mùa hè xanh</h3>
+        <p>Tham gia các hoạt động tình nguyện hè, hỗ trợ cộng đồng và xây dựng nông thôn mới cùng TVU.</p>
+        <ul class="icon-list">
+          <li><i class="fa fa-check-circle"></i> Ngày chủ nhật xanh</li>
+          <li><i class="fa fa-check-circle"></i> Xung kích tình nguyện</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="activity-card">
+      <div class="img-box">
+        <span class="badge">Giao lưu</span>
+        <img src="anh/muado.jpg" alt="Giao lưu D5">
+      </div>
+      <div class="card-body">
+        <h3><i class="fa fa-film"></i> Giải trí tại D5</h3>
+        <p>Giao lưu văn nghệ và các hoạt động giải trí sôi nổi cùng bạn bè tại khu vực D5.</p>
+        <ul class="icon-list">
+          <li><i class="fa fa-check-circle"></i> Xem phim rạp mini</li>
+          <li><i class="fa fa-check-circle"></i> Giao lưu âm nhạc</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="activity-card">
+      <div class="img-box">
+        <span class="badge">Văn hóa</span>
+        <img src="anh/venguon.jpg" alt="Về nguồn">
+      </div>
+      <div class="card-body">
+        <h3><i class="fa fa-university"></i> Hành trình Về nguồn</h3>
+        <p>Tìm hiểu lịch sử dân tộc qua các chuyến đi thực tế tại các địa chỉ đỏ, di tích lịch sử.</p>
+        <ul class="icon-list">
+          <li><i class="fa fa-check-circle"></i> Thăm Đền thờ Bác</li>
+          <li><i class="fa fa-check-circle"></i> Viếng di tích lịch sử</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="activity-card">
+      <div class="img-box">
+        <span class="badge">Xã hội</span>
+        <img src="anh/tiepsuc.jpg" alt="Tiếp sức mùa thi">
+      </div>
+      <div class="card-body">
+        <h3><i class="fa fa-graduation-cap"></i> Tiếp sức mùa thi</h3>
+        <p>Hỗ trợ các thí sinh trong kỳ thi tốt nghiệp và tuyển sinh tại địa bàn Trà Vinh.</p>
+        <ul class="icon-list">
+          <li><i class="fa fa-check-circle"></i> Hướng dẫn thí sinh</li>
+          <li><i class="fa fa-check-circle"></i> Hỗ trợ giao thông</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="activity-card">
+      <div class="img-box">
+        <span class="badge">Nhân đạo</span>
+        <img src="anh/hienmau.jpg" alt="Hiến máu nhân đạo">
+      </div>
+      <div class="card-body">
+        <h3><i class="fa fa-heartbeat"></i> Hiến máu nhân đạo</h3>
+        <p>Tham gia hoạt động hiến máu cứu người thường niên đầy ý nghĩa do nhà trường tổ chức.</p>
+        <ul class="icon-list">
+          <li><i class="fa fa-check-circle"></i> Giấy chứng nhận hiến máu</li>
+          <li><i class="fa fa-check-circle"></i> Lan tỏa tinh thần nhân ái</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

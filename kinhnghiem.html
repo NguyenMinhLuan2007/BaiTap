@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    :root {
+      --deep-bg: #020617;
+      --neon-cyan: #22d3ee;
+      --glass: rgba(15, 23, 42, 0.85);
+      --border: rgba(34, 211, 238, 0.2);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 900px;
+      padding: 60px 0;
+    }
+
+    .header-main {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .header-main h1 {
+      font-size: 35px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      background: linear-gradient(to right, var(--neon-cyan), #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+    }
+
+    /* Khối dự án xếp dọc */
+    .project-section {
+      margin-bottom: 100px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    /* 1. Phần Ảnh ở trên */
+    .project-image-box {
+      width: 100%;
+      height: 400px;
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    /* Hiệu ứng trượt ảnh liên tục */
+    .slider-track {
+      display: flex;
+      width: calc(100% * 2); /* Chỉ cần nhân 2 vì ta lặp lại 1 ảnh để tạo hiệu ứng vô tận */
+      animation: scrollFull 15s linear infinite;
+    }
+
+    @keyframes scrollFull {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .slider-track img {
+      width: 50%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    /* 2. Phần Mô tả ở dưới */
+    .project-content {
+      background: var(--glass);
+      padding: 40px;
+      border-radius: 0 0 20px 20px;
+      border: 1px solid var(--border);
+      border-top: none;
+      backdrop-filter: blur(10px);
+    }
+
+    .project-content h2 {
+      color: var(--neon-cyan);
+      margin-top: 0;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .project-content p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    .tag-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .tag {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--neon-cyan);
+      padding: 5px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      border: 1px solid var(--border);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-main">
+      <h1>DANH SÁCH DỰ ÁN</h1>
+      <p style="color: #94a3b8;">Sản phẩm tâm huyết trong quá trình học tập của Luan</p>
+    </div>
+
+    <div class="project-section">
+      <div class="project-image-box">
+        <div class="slider-track">
+          <img src="anh/webnn.png" alt="Web Nghe Nhạc">
+          <img src="anh/webnn.png" alt="Web Nghe Nhạc"> </div>
+      </div>
+      <div class="project-content">
+        <h2><i class="fa fa-music"></i> 01. Web Nghe Nhạc (Mini)</h2>
+        <p>Thiết kế trang web trình phát nhạc đơn giản, dễ làm .</p>
+        <div class="tag-group">
+          <span class="tag">HTML5 Frameset</span>
+          <span class="tag">Multimedia</span>
+          <span class="tag">CSS Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-section">
+      <div class="project-image-box">
+        <div class="slider-track" style="animation-duration: 20s;">
+          <img src="anh/gioithieubanthan.png" alt="Giới Thiệu Bản Thân">
+          <img src="anh/gioithieubanthan.png" alt="Giới Thiệu Bản Thân">
+        </div>
+      </div>
+      <div class="project-content">
+        <h2><i class="fa fa-user-circle"></i> 02. Web Giới Thiệu Bản Thân</h2>
+        <p>Portfolio cá nhân lưu giữ những kỷ niệm, hoạt động Đoàn hội và thành tích học tập tại Đại học Trà Vinh (TVU).</p>
+        <div class="tag-group">
+          <span class="tag">Portfolio</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">Animations</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-section">
+      <div class="project-image-box">
+        <div class="slider-track" style="animation-duration: 12s;">
+          <img src="anh/timviec.png" alt="Web Tìm Việc">
+          <img src="anh/timviec.png" alt="Web Tìm Việc">
+        </div>
+      </div>
+      <div class="project-content">
+        <h2><i class="fa fa-search-plus"></i> 03. Web Tìm Việc Lao Động Phổ Thông</h2>
+        <p>Đề tài nghiên cứu ứng dụng AI vào việc hỗ trợ lao động phổ thông tìm kiếm việc làm nhanh chóng và hiệu quả, đây là một ý tưởng của em vừa nghĩ ra khi học môn phương pháp nghiên cứu khoa học, ý tưởng này nhằm giúp cho người lao động yếu thế có thể tìm việc một cách nhanh chóng và dễ dàng .</p>
+        <div class="tag-group">
+          <span class="tag">AI Research</span>
+          <span class="tag">Community</span>
+          <span class="tag">Web App</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    :root {
+      --neon-cyan: #22d3ee;
+      --accent-blue: #3b82f6;
+      --bg-gradient: radial-gradient(circle at top, #0f172a 0%, #020617 100%);
+      --glass: rgba(30, 41, 59, 0.5);
+      --card-bg: rgba(15, 23, 42, 0.8);
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #f8fafc;
+      margin: 0; padding: 20px;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    /* --- KHUNG HỒ SƠ CÁ NHÂN --- */
+    .profile-card {
+      max-width: 500px;
+      margin: 20px auto 40px;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px); 
+      border: 1px solid rgba(34, 211, 238, 0.15);
+      border-radius: 30px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .profile-img {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      border: 3px solid var(--neon-cyan);
+      box-shadow: 0 0 25px rgba(34, 211, 238, 0.4);
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .profile-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--neon-cyan);
+      text-transform: uppercase;
+      margin: 10px 0;
+      letter-spacing: 1px;
+    }
+
+    .profile-title {
+      color: var(--accent-blue);
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+      text-align: left;
+    }
+    .info-item {
+      background: rgba(30, 41, 59, 0.4);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      color: #cbd5e1;
+      text-decoration: none;
+      display: block;
+      transition: 0.3s;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .info-item:hover {
+      background: rgba(34, 211, 238, 0.15);
+      color: var(--neon-cyan);
+      border-color: var(--neon-cyan);
+    }
+    .info-item i { color: var(--neon-cyan); margin-right: 8px; }
+
+    .social-icons { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
+    .social-icons a { color: var(--accent-blue); font-size: 24px; transition: 0.3s; cursor: pointer; }
+    .social-icons a:hover { color: var(--neon-cyan); transform: scale(1.2); }
+
+    /* --- PHẦN PHIẾU HỖ TRỢ --- */
+    #supportWrapper {
+        display: none;
+        animation: slideDown 0.5s ease-out;
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .support-section {
+        max-width: 500px;
+        margin: 0 auto 50px;
+        background: var(--glass);
+        padding: 25px;
+        border-radius: 20px;
+        border: 1px solid rgba(34, 211, 238, 0.3); /* Viền rõ hơn */
+    }
+    .support-section input, .support-section textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #1e293b;
+        background: #0f172a;
+        color: white;
+        box-sizing: border-box;
+    }
+    .btn-submit {
+        background: var(--neon-cyan);
+        color: #020617;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+    }
+    
+    #confirmBox {
+        margin-top: 20px;
+        padding: 15px;
+        background: rgba(34, 211, 238, 0.1);
+        border: 1px solid var(--neon-cyan);
+        border-radius: 10px;
+        display: none;
+    }
+    .confirm-btns { display: flex; gap: 10px; margin-top: 10px; }
+    .btn-yes { background: #22c55e; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; }
+    .btn-no { background: #ef4444; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; }
+
+    .header-section { text-align: center; margin: 40px 0 20px 0; }
+    .header-section h2 { 
+      color: var(--neon-cyan); 
+      font-size: 22px; 
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--neon-cyan);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    /* --- CĂN GIỮA VÀ TẠO KHUNG CHO MỤC TIÊU --- */
+    .extra-grid {
+      display: flex;
+      flex-direction: column; 
+      align-items: center; /* Căn giữa theo chiều ngang */
+      gap: 25px;
+      max-width: 600px;
+      margin: 0 auto; 
+    }
+
+    .skill-card {
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(34, 211, 238, 0.2); /* Tạo khung với màu neon nhẹ */
+      border-radius: 20px;
+      padding: 25px;
+      transition: 0.4s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .skill-card:hover {
+      border-color: var(--neon-cyan);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(34, 211, 238, 0.15);
+    }
+
+    .skill-card h3 {
+      color: var(--neon-cyan);
+      margin-top: 0;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 10px;
+    }
+
+    .skill-list {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0 0 0;
+      text-align: left;
+    }
+
+    .skill-list li {
+      margin-bottom: 12px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .skill-list i {
+      color: var(--accent-blue);
+      width: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-card">
+    <img src="anh/anh7co.jpg" alt="Nguyễn Minh Luân" class="profile-img">
+    <div class="profile-name">Nguyễn Minh Luân</div>
+    <div class="profile-interests"><i class="fa fa-soccer-ball-o"></i> Football & Volleyball</div>
+    <div class="profile-title">Sinh Viên Ngành Công Nghệ Thông Tin @ Tra Vinh University</div>
+
+    <div class="info-grid">
+      <div class="info-item"><i class="fa fa-phone"></i> 0337340739</div>
+      <div class="info-item"><i class="fa fa-calendar"></i> 23-02-2007</div>
+      <a href="https://maps.app.goo.gl/B9p6pZ6s1Xz9Xk9X6" target="_blank" class="info-item">
+        <i class="fa fa-map-marker"></i> TVU Student
+      </a>
+      <div class="info-item"><i class="fa fa-envelope"></i> minhluan200077@gmail.com</div>
+    </div>
+
+    <div class="social-icons">
+      <a href="https://www.facebook.com/share/173Va5U5ui/?mibextid=wwXIfr" target="_blank"><i class="fa fa-facebook-square"></i></a>
+      <a onclick="toggleSupportForm()"><i class="fa fa-envelope"></i></a>
+    </div>
+  </div>
+
+  <div id="supportWrapper">
+      <div class="header-section">
+        <h2>Phiếu Yêu Cầu Hỗ Trợ</h2>
+      </div>
+      <div class="support-section">
+          <input type="text" id="userName" placeholder="Họ và tên của bạn">
+          <input type="email" id="userEmail" placeholder="Email liên hệ">
+          <textarea id="userContent" rows="4" placeholder="Nội dung bạn cần hỗ trợ..."></textarea>
+          <button class="btn-submit" onclick="showConfirmation()">GỬI YÊU CẦU</button>
+          <div id="confirmBox"></div>
+      </div>
+  </div>
+
+  <div class="header-section">
+    <h2>Mục Tiêu Phát Triển</h2>
+  </div>
+
+  <div class="extra-grid">
+    <div class="skill-card">
+      <h3><i class="fa fa-laptop"></i> Tech Stack</h3>
+      <ul class="skill-list">
+        <li><i class="fa fa-language"></i> Ngôn ngữ: C (Basic/Advanced)</li>
+        <li><i class="fa fa-html5"></i> Front-end: HTML5, CSS3</li>
+        <li><i class="fa fa-database"></i> Thuật toán: Sorting, Pointers</li>
+        <li><i class="fa fa-desktop"></i> Công cụ: VS Code, Git, Netlify</li>
+      </ul>
+    </div>
+
+    <div class="skill-card">
+      <h3><i class="fa fa-rocket"></i> Dự Án Cá Nhân</h3>
+      <ul class="skill-list">
+        <li><i class="fa fa-music"></i> <b>Music Player:</b> HTML Frameset</li>
+        <li><i class="fa fa-search"></i> <b>AI Job Web:</b> Nghiên cứu AI tìm việc</li>
+        <li><i class="fa fa-user-circle"></i> <b>Portfolio:</b> Hồ sơ năng lực số</li>
+      </ul>
+    </div>
+
+    <div class="skill-card">
+      <h3><i class="fa fa-lightbulb-o"></i> Định Hướng</h3>
+      <ul class="skill-list">
+        <li><i class="fa fa-star"></i> Hoàn thành đồ án xuất sắc</li>
+        <li><i class="fa fa-certificate"></i> Đạt chứng chỉ lập trình quốc tế</li>
+        <li><i class="fa fa-briefcase"></i> Thực tập tại doanh nghiệp phần mềm</li>
+        <li><i class="fa fa-globe"></i> Nâng cao khả năng tiếng Anh IT</li>
+      </ul>
+    </div>
+
+    <div style="margin: 20px 0 40px 0; text-align: center; color: #94a3b8; font-size: 13px; opacity: 0.7;">
+      <p><i>"Không ngừng học hỏi, không ngừng sáng tạo."</i></p>
+    </div>
+  </div>
+
+  <script>
+    function toggleSupportForm() {
+        var wrapper = document.getElementById("supportWrapper");
+        if (wrapper.style.display === "none" || wrapper.style.display === "") {
+            wrapper.style.display = "block";
+            wrapper.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            wrapper.style.display = "none";
+        }
+    }
+
+    function showConfirmation() {
+        var name = document.getElementById("userName").value;
+        var box = document.getElementById("confirmBox");
+        if(name === "") { alert("Vui lòng nhập tên!"); return; }
+
+        box.innerHTML = `
+            <p style="margin:0; font-size:14px;">Chào <b>${name}</b>, bạn xác nhận gửi chứ?</p>
+            <div class="confirm-btns">
+                <button class="btn-yes" onclick="sendSuccess()">Đồng ý</button>
+                <button class="btn-no" onclick="cancelSend()">Hủy</button>
+            </div>
+        `;
+        box.style.display = "block";
+    }
+
+    function sendSuccess() {
+        var box = document.getElementById("confirmBox");
+        box.innerHTML = `<p style="color:#22c55e; margin:0;">✔️ Đã gửi thành công!</p>`;
+        setTimeout(function(){
+            box.style.display = "none";
+            document.getElementById("supportWrapper").style.display = "none";
+            document.getElementById("userName").value = "";
+            document.getElementById("userEmail").value = "";
+            document.getElementById("userContent").value = "";
+        }, 2000);
+    }
+
+    function cancelSend() { document.getElementById("confirmBox").style.display = "none"; }
+  </script>
+</body>
+</html>

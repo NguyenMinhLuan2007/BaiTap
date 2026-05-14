@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <title>Giới Thiệu Bản Thân</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    :root {
+      --deep-blue: #0f172a;
+      --ocean-blue: #1e293b;
+      --accent-blue: #38bdf8;
+      --text-gray: #94a3b8;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f1f5f9;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    /* MENU BÊN TRÁI */
+    .sidenav {
+      background: linear-gradient(180deg, var(--deep-blue) 0%, var(--ocean-blue) 100%);
+      padding: 30px 0;
+      height: 100vh;
+      color: white;
+      position: fixed;
+      width: 260px;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+    }
+
+    .sidenav h4 {
+      color: var(--accent-blue);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* NÚT TRANG CHỦ */
+    .home-btn {
+      margin: 0 15px 15px 15px;
+    }
+    .home-btn a {
+      display: block;
+      text-align: center;
+      padding: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+    .home-btn a:hover { background: var(--accent-blue); color: var(--deep-blue); }
+
+    /* THANH TÌM KIẾM */
+    .search-box {
+      padding: 0 15px;
+      margin-bottom: 25px;
+    }
+
+    .search-box .input-group {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .search-box input {
+      background: transparent !important;
+      border: none !important;
+      color: white !important;
+      box-shadow: none !important;
+    }
+
+    .search-box input::placeholder { color: var(--text-gray); }
+
+    .search-box .btn { background: transparent; color: var(--text-gray); border: none; }
+
+    /* NAV LINKS */
+    .nav-pills > li { margin: 8px 15px; }
+    .nav-pills > li > a {
+      color: var(--text-gray);
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .nav-pills > li.active > a {
+      background-color: var(--accent-blue) !important;
+      color: var(--deep-blue) !important;
+      font-weight: bold;
+    }
+
+    /* MAIN CONTENT */
+    .main-content { margin-left: 260px; height: 100vh; background-color: #f1f5f9; padding: 20px; }
+    #content-frame { width: 100%; height: calc(100vh - 40px); border: none; border-radius: 20px; background: white; }
+
+    @media screen and (max-width: 767px) {
+      .sidenav { width: 100%; height: auto; position: relative; }
+      .main-content { margin-left: 0; height: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidenav">
+    <h4>Menu</h4>
+
+    <div class="home-btn">
+      <a href="index.html"><i class="fa fa-home"></i> Trang chủ</a>
+    </div>
+
+    <div class="search-box">
+      <div class="input-group">
+        <input type="text" id="searchInput" class="form-control" placeholder="Tìm kỹ năng, dự án...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" onclick="handleDeepSearch()">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+
+    <ul class="nav nav-pills nav-stacked" id="mainMenu">
+      <li class="active"><a href="gioithieu.html" target="content-frame" id="menu-gioithieu" onclick="setActive(this.parentElement)"><i class="fa fa-user"></i> Giới Thiệu</a></li>
+      <li><a href="trainghiem.html" target="content-frame" id="menu-trainghiem" onclick="setActive(this.parentElement)"><i class="fa fa-compass"></i> Trải Nghiệm</a></li>
+      <li><a href="kinhnghiem.html" target="content-frame" id="menu-kinhnghiem" onclick="setActive(this.parentElement)"><i class="fa fa-laptop"></i> Kinh Nghiệm</a></li>
+      <li><a href="hoatdong.html" target="content-frame" id="menu-hoatdong" onclick="setActive(this.parentElement)"><i class="fa fa-users"></i> Hoạt Động</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <iframe name="content-frame" id="content-frame" src="gioithieu.html"></iframe>
+  </div>
+
+  <script>
+    // 1. DỮ LIỆU TÌM KIẾM TOÀN TRANG (Luan có thể thêm từ khóa vào đây)
+    const searchData = [
+      {
+        page: "gioithieu.html",
+        menuId: "menu-gioithieu",
+        keywords: ["luan", "nguyen minh luan", "tra vinh", "tvu", "it", "cong nghe thong tin", "bong chuyen", "bong da", "football", "volleyball", "2007"]
+      },
+      {
+        page: "trainghiem.html",
+        menuId: "menu-trainghiem",
+        keywords: ["du lich", "vung tau", "da lat", "thuc tap", "lab", "trai nghiem thuc te"]
+      },
+      {
+        page: "kinhnghiem.html",
+        menuId: "menu-kinhnghiem",
+        keywords: ["lap trinh", "ngon ngu c", "html", "css", "javascript", "web", "netlify", "github", "code", "thuat toan", "sorting", "quick sort"]
+      },
+      {
+        page: "hoatdong.html",
+        menuId: "menu-hoatdong",
+        keywords: ["tinh nguyen", "mua he xanh", "doan thanh nien", "clb", "club", "teamwork", "nhom"]
+      },
+      
+    ];
+
+    function setActive(liElement) {
+      var items = document.querySelectorAll('#mainMenu li');
+      items.forEach(item => item.classList.remove('active'));
+      liElement.classList.add('active');
+    }
+
+    function handleDeepSearch() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const frame = document.getElementById('content-frame');
+      
+      if (query === "") return;
+
+      let foundPage = null;
+
+      // Quét qua dữ liệu tìm kiếm
+      for (let item of searchData) {
+        // Kiểm tra nếu từ khóa tìm kiếm khớp với bất kỳ từ nào trong mảng keywords
+        const isMatch = item.keywords.some(key => key.includes(query));
+        
+        if (isMatch) {
+          foundPage = item;
+          break;
+        }
+      }
+
+      if (foundPage) {
+        // 1. Chuyển nội dung iframe
+        frame.src = foundPage.page;
+        // 2. Cập nhật Menu bên trái
+        const linkedMenuA = document.getElementById(foundPage.menuId);
+        setActive(linkedMenuA.parentElement);
+      } else {
+        alert("Rất tiếc! Luan chưa có thông tin về: '" + query + "'");
+      }
+    }
+
+    // Nhấn Enter để tìm
+    document.getElementById('searchInput').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') handleDeepSearch();
+    });
+  </script>
+
+</body>
+</html>
